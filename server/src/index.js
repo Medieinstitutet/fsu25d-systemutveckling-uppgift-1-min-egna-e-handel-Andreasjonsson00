@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import currencyRoutes from "./routes/currencyRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 app.use(authRoutes);
 app.use(productRoutes);
 app.use(orderRoutes);
+app.use(currencyRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

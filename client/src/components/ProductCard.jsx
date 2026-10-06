@@ -1,12 +1,15 @@
 import "./ProductCard.css";
+import { useCurrency } from "../context/CurrencyProvider";
 
 const ProductCard = ({ products, addToCart, getProductName }) => {
+  const { currency, convertPrice } = useCurrency();
+
   function getProductDescription(product) {
     return product.description ?? "Ingen beskrivning ännu.";
   }
 
   function getProductPrice(product) {
-    return product.price ?? "Pris saknas";
+    return product.price ?? null;
   }
 
   return (
@@ -23,7 +26,8 @@ const ProductCard = ({ products, addToCart, getProductName }) => {
 
           <div className="product-footer">
             <strong className="product-price">
-              {getProductPrice(product)}:-
+              {convertPrice(Number(getProductPrice(product))).toFixed(2)}{" "}
+              {currency}
             </strong>
 
             <button type="button" onClick={() => addToCart(product)}>
